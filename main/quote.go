@@ -36,6 +36,7 @@ func GetAllQuotes(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// Found at least 1, return status 200
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(quotes)
 }
@@ -52,6 +53,7 @@ func GetQuoteById(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Found by ID, return status 200 and json encode
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(quote)
 }
@@ -66,6 +68,7 @@ func GetRandomQuote(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Random quote found, return 200 and encode
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(quote)
 }
@@ -81,7 +84,7 @@ func GetAllQuotesByPerson(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNoContent)
 		return
 	}
-
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(quotes)
 }
